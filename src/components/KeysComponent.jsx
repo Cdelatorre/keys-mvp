@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gif from "../assets/test-1.gif";
 import stop from "../assets/stop.gif";
 import deleteImg from "../assets/delete-animated.gif";
-import background from "../assets/background-piplup.gif";
+import background from "../assets/background-piplup-min.gif";
 
 const KeysComponent = () => {
   const containerRef = useRef(null);
