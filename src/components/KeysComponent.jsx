@@ -90,10 +90,10 @@ const KeysComponent = () => {
             ref={textRef}
             style={{
               position: "absolute",
-              top: "20%",
+              top: "15%",
               left: "50%",
               transform: "translate(-50%, 0%)",
-              fontSize: "2rem",
+              fontSize: "1.75rem",
               fontWeight: "bold",
               color: "black",
               textAlign: "center",
