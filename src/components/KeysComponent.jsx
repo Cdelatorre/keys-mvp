@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import gif from "../assets/test-1.gif";
-import stop from "../assets/stop.gif";
-import deleteImg from "../assets/delete-animated.gif";
-import background from "../assets/background-piplup-min.gif";
+import gifDesktop from "../assets/test-1.gif";
+import stopDesktop from "../assets/stop.gif";
+import deleteDesktop from "../assets/delete-animated.gif";
+import backgroundDesktop from "../assets/background-piplup-min.gif";
+
+// Imágenes adaptadas para móvil
+import gifMobile from "../assets/keys-mov.gif";
+import stopMobile from "../assets/stop-mobile.gif";
+import deleteMobile from "../assets/delete-mov.gif";
+import backgroundMobile from "../assets/background-mov.gif";
 
 const KeysComponent = () => {
   const containerRef = useRef(null);
@@ -17,7 +23,9 @@ const KeysComponent = () => {
   const scrollTimeout = useRef(null);
   const [visibleText, setVisibleText] = useState("");
 
-  const fullText = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt voluptatibus sapiente quod libero, vel ab autem, magni minima eos veritatis.';
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const fullText = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.';
   const totalCharacters = fullText.length;
 
   useEffect(() => {
@@ -68,12 +76,21 @@ const KeysComponent = () => {
     };
   }, [fullText, totalCharacters]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div ref={containerRef} style={{ position: "relative", overflow: "hidden" }}>
         <div
           style={{
-            backgroundImage: `url(${background})`,
+            backgroundImage: `url(${isMobile ? backgroundMobile : backgroundDesktop})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -90,7 +107,7 @@ const KeysComponent = () => {
             ref={textRef}
             style={{
               position: "absolute",
-              top: "17.5%",
+              top: "40%",
               left: "50%",
               transform: "translate(-50%, 0%)",
               fontSize: "1.85rem",
@@ -107,7 +124,7 @@ const KeysComponent = () => {
         <div
           ref={stopImageRef}
           style={{
-            backgroundImage: `url(${stop})`,
+            backgroundImage: `url(${isMobile ? stopMobile : stopDesktop})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -124,7 +141,7 @@ const KeysComponent = () => {
         <div
           ref={gifImageRef}
           style={{
-            backgroundImage: `url(${gif})`,
+            backgroundImage: `url(${isMobile ? gifMobile : gifDesktop})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -141,7 +158,7 @@ const KeysComponent = () => {
         <div
           ref={deleteImageRef}
           style={{
-            backgroundImage: `url(${deleteImg})`,
+            backgroundImage: `url(${isMobile ? deleteMobile : deleteDesktop})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
