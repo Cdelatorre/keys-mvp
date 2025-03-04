@@ -36,7 +36,7 @@ const KeysComponent = () => {
       const scrollY = window.scrollY;
       const maxScroll = scrollContainerRef.current.scrollHeight - window.innerHeight;
       const progress = Math.min(scrollY / maxScroll, 1);
-      const charCount = Math.floor(progress * totalCharacters);
+      const charCount = Math.floor(progress * totalCharacters); 7
       setVisibleText(fullText.slice(0, charCount));
 
       if (scrollY > lastScroll.current) {
@@ -57,7 +57,6 @@ const KeysComponent = () => {
           gsap.set(gifImageRef.current, { opacity: 0 });
           gsap.set(deleteImageRef.current, { opacity: 0 });
           gsap.set(stopImageRef.current, { opacity: 1 });
-          window.scrollTo({ top: window.scrollY, behavior: "instant" });
         }
       }, 100);
     };
@@ -107,7 +106,7 @@ const KeysComponent = () => {
             ref={textRef}
             style={{
               position: "absolute",
-              top: "40%",
+              top: "20%",
               left: "50%",
               transform: "translate(-50%, 0%)",
               fontSize: "1.85rem",
